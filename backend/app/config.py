@@ -6,7 +6,7 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 
 class Settings(BaseSettings):
     gemini_api_key: str = Field(min_length=1)
-    gemini_model: str = "gemini-2.5-flash"
+    gemini_model: str = "gemini-2.0-flash"
     allowed_origins: str = "http://localhost:5173"
     log_user_input: bool = False
 

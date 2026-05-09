@@ -100,10 +100,19 @@ def _parse_questions(raw_text: str | None) -> list[str]:
     if not raw_text:
         raise LLMMalformedError("Gemini returned an empty response")
 
+    # Gemini thinking models may wrap JSON in markdown or prepend reasoning.
+    # Extract the first {...} block to be safe.
+    text = raw_text.strip()
     try:
-        data = json.loads(raw_text)
-    except json.JSONDecodeError as exc:
-        raise LLMMalformedError("Gemini returned non-JSON output") from exc
+        data = json.loads(text)
+    except json.JSONDecodeError:
+        start, end = text.find("{"), text.rfind("}")
+        if start == -1 or end == -1:
+            raise LLMMalformedError("Gemini returned non-JSON output")
+        try:
+            data = json.loads(text[start : end + 1])
+        except json.JSONDecodeError as exc:
+            raise LLMMalformedError("Gemini returned non-JSON output") from exc
 
     questions = data.get("questions") if isinstance(data, dict) else None
     if not isinstance(questions, list) or len(questions) != 3:
