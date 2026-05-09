@@ -1,0 +1,77 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: "Geist", "Inter", system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  ::selection {
+    background-color: #6750a4;
+    color: white;
+  }
+  * {
+    transition-property: background-color, border-color, color;
+    transition-duration: 200ms;
+    transition-timing-function: ease;
+  }
+}
+
+@layer utilities {
+  /* Light mode shimmer */
+  .shimmer {
+    background: linear-gradient(90deg, #f1f5f9 0%, #e2e8f0 40%, #f1f5f9 80%);
+    background-size: 200% 100%;
+    animation: shimmer 1.8s infinite linear;
+  }
+  /* Dark mode shimmer */
+  .dark .shimmer {
+    background: linear-gradient(90deg, #211f24 0%, #2b292f 40%, #211f24 80%);
+    background-size: 200% 100%;
+  }
+
+  /* Gradient button */
+  .btn-gradient {
+    background: linear-gradient(135deg, #6750a4 0%, #4f378a 100%);
+  }
+  .btn-gradient:hover:not(:disabled) {
+    background: linear-gradient(135deg, #7c6bbf 0%, #6750a4 100%);
+  }
+
+  /* Number badge */
+  .badge-gradient {
+    background: linear-gradient(135deg, #6750a4 0%, #4f378a 100%);
+  }
+
+  /* Hero gradient text */
+  .gradient-text {
+    background: linear-gradient(135deg, #6750a4 0%, #9b86e0 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .dark .gradient-text {
+    background: linear-gradient(135deg, #cfbcff 0%, #9b86e0 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Ambient glow backgrounds */
+  .glow-light {
+    background: radial-gradient(
+      ellipse at top right,
+      rgba(103, 80, 164, 0.1) 0%,
+      transparent 60%
+    );
+  }
+  .glow-dark {
+    background: radial-gradient(
+      ellipse at top right,
+      rgba(103, 80, 164, 0.18) 0%,
+      transparent 55%
+    );
+  }
+}

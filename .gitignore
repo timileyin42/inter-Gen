@@ -1,0 +1,22 @@
+.DS_Store
+.env
+.env.*
+!.env.example
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.venv/
+node_modules/
+dist/
+# Internal / AI tooling — not for the repo
+Agents.md
+
+.github/SKILL.md
+.github/Copilot instructions .md
+ui_design/
+
+# Product docs — keep out of public repo
+prd.md
+*.pdf
+stitch_interviewgenie_ai_ui_prompt.zip
